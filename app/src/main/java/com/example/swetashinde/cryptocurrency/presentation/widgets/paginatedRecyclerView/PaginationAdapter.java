@@ -72,7 +72,7 @@ public abstract class PaginationAdapter<D> extends RecyclerView.Adapter<Recycler
 
     }
 
-    protected final void addLoadingViewFooter(D emptyDataObject) {
+    protected  void addLoadingViewFooter(D emptyDataObject) {
         if(this.dataList.size() > 0) {
             this.isLoadingViewAdded = true;
             this.dataList.add(emptyDataObject);

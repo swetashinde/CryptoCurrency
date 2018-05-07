@@ -18,6 +18,6 @@ public class CoinMarketCapDownloader implements CoinMarketCapRepository {
 
 
     @Override public Single<List<Crypto>> getCryptoList(int page, int limit) {
-        return  coinMarketCapApi.getCryptoList(page,limit);
+        return  coinMarketCapApi.getCryptoList(page * limit,limit);
     }
 }

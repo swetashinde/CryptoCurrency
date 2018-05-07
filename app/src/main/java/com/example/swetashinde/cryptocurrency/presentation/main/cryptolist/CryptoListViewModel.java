@@ -50,7 +50,7 @@ public class CryptoListViewModel extends ViewModel {
 
     public final void resetCryptoList() {
         int pageNum = 0;
-        this.stateLiveData.setValue(new LoadingState(pageNum, false, CollectionsKt.emptyList()));
+        this.stateLiveData.setValue(new LoadingState(pageNum, false, new ArrayList()));
         this.updateCryptoList();
     }
 

@@ -3,25 +3,43 @@ package com.example.swetashinde.cryptocurrency.di;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import com.example.swetashinde.cryptocurrency.presentation.main.cryptolist.CryptoListViewModel;
+import java.util.Map;
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
+import kotlin.jvm.JvmSuppressWildcards;
 
 /**
  * Created by swetashinde on 4/25/18.
  */
+@Singleton
 public class DaggerViewModelFactory implements ViewModelProvider.Factory {
-
-    private CryptoListViewModel mViewModel;
+    private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
     @Inject
-    public DaggerViewModelFactory(CryptoListViewModel viewModel) {
-        this.mViewModel = viewModel;
+    public DaggerViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
+        this.creators = creators;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(CryptoListViewModel.class)) {
-            return (T) mViewModel;
+        Provider<? extends ViewModel> creator = creators.get(modelClass);
+        if (creator == null) {
+            for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {
+                if (modelClass.isAssignableFrom(entry.getKey())) {
+                    creator = entry.getValue();
+                    break;
+                }
+            }
         }
-        throw new IllegalArgumentException("Unknown class name");
+        if (creator == null) {
+            throw new IllegalArgumentException("unknown model class " + modelClass);
+        }
+        try {
+            return (T) creator.get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

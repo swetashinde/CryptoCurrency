@@ -38,12 +38,14 @@ public class ApplicationModule {
         return scheduler;
     }
 
-    @Provides ViewModel provideCryptoListViewModel(CryptoListViewModel viewModel) {
+    /*
+    @Provides
+    ViewModel provideCryptoListViewModel(CryptoListViewModel viewModel) {
         return viewModel;
     }
 
     @Provides
     ViewModelProvider.Factory provideCryptoListViewModelFactory(DaggerViewModelFactory factory) {
         return factory;
-    }
+    }*/
 }

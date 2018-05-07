@@ -22,6 +22,7 @@ public class CryptoListRecyclerAdapter extends PaginationAdapter<CryptoViewModel
     private static final int DECIMALS_FIAT = 4;
     private static final int DECIMALS_BTC = 7;
     private static final int DECIMALS_CHANGE = 2;
+    private CryptoViewModel  emptyCryptoViewModel = new CryptoViewModel("", "", "", 0, 0f, 0f, 0f);
 
     @Override
     public CryptoViewHolder onCreateItemViewHolder(ViewGroup viewGroup, int viewType) {
@@ -36,13 +37,14 @@ public class CryptoListRecyclerAdapter extends PaginationAdapter<CryptoViewModel
     }
 
     @Override public void addLoadingViewFooter() {
-        addLoadingViewFooter(new CryptoViewModel());
+        addLoadingViewFooter(emptyCryptoViewModel);
     }
 
     public void updateData(List<CryptoViewModel> newData){
+        this.dataList.remove(emptyCryptoViewModel);
         int fromIndex = dataList.size();
-        this.setDataList(newData);
-        notifyItemRangeInserted(fromIndex,dataList.size());
+        dataList = newData;
+        notifyItemRangeInserted(fromIndex,newData.size());
 
     }
 
@@ -58,7 +60,7 @@ public class CryptoListRecyclerAdapter extends PaginationAdapter<CryptoViewModel
 
         public void bind(CryptoViewModel cryptoViewModel){
 
-            TextView rank = (TextView) itemView.findViewById(R.id.tvPosition);
+            TextView rank = itemView.findViewById(R.id.tvPosition);
             rank.setText(String.valueOf(cryptoViewModel.getRank()));
 
             TextView symbol = itemView.findViewById(R.id.tvSymbol);
@@ -67,6 +69,10 @@ public class CryptoListRecyclerAdapter extends PaginationAdapter<CryptoViewModel
 
             TextView price = itemView.findViewById(R.id.tvPrice);
             price.setText(bindPrice(cryptoViewModel));
+
+            TextView tvChange24h = itemView.findViewById(R.id.tvChange24h);
+            tvChange24h.setText(bindChangeText(cryptoViewModel));
+            tvChange24h.setTextColor(bindChangeColor(cryptoViewModel));
 
 
 

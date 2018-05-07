@@ -54,7 +54,7 @@ public class CryptoListFragment extends Fragment {
             if(cryptoListState instanceof DefaultState) {
                 CryptoListFragment.this.isLoading = false;
                 swipeRefreshLayout.setRefreshing(false);
-                CryptoListFragment.this.getCryptoListAdapter().updateData(cryptoListState.data());
+                cryptoListAdapter.updateData(cryptoListState.data());
             } else if(cryptoListState instanceof LoadingState) {
                 swipeRefreshLayout.setRefreshing(true);
                 CryptoListFragment.this.isLoading = true;
@@ -63,7 +63,7 @@ public class CryptoListFragment extends Fragment {
             } else if(cryptoListState instanceof ErrorState) {
                 CryptoListFragment.this.isLoading = false;
                 swipeRefreshLayout.setRefreshing(false);
-                CryptoListFragment.this.getCryptoListAdapter().removeLoadingViewFooter();
+                cryptoListAdapter.removeLoadingViewFooter();
             }
         }
 

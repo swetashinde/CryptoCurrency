@@ -14,9 +14,6 @@ public class DefaultState extends CryptoListState {
     private  boolean loadedAllItems;
     private  List data;
 
-    public DefaultState() {
-    }
-
     public DefaultState(int pageNum, boolean loadedAllItems, List data) {
         this.pageNum = pageNum;
         this.loadedAllItems = loadedAllItems;

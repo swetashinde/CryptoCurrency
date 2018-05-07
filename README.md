@@ -5,4 +5,4 @@ and it is done using JAVA and heavily based on this Kotlin Example
 https://proandroiddev.com/android-clean-architecture-with-viewmodel-usecases-and-repositories-part-1-b9e63889a1aa
 
 
-![alt text](https://user-images.githubusercontent.com/32681958/39509529-7095237c-4d9b-11e8-85a2-74d9951cf342.gif)
+![mvvm-dagger2-clean](https://user-images.githubusercontent.com/32681958/39681148-050668ee-515d-11e8-9629-d65d264786c7.gif)

@@ -8,4 +8,7 @@ The Sole purpose of this demo project was to get team on board with
 MVVM approach and Google Arch libraries 
 
 
+Below is the GIF -- which is constructed using LiceCap tool
+
+
 ![mvvm-dagger2-clean](https://user-images.githubusercontent.com/32681958/39681148-050668ee-515d-11e8-9629-d65d264786c7.gif)
